@@ -1,9 +1,9 @@
 {
-  "name": "electron-vite-react",
+  "name": "Diff_Website",
   "version": "2.2.0",
   "main": "dist-electron/main/index.js",
   "description": "Electron Vite React boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "author": "yuehua46",
   "license": "MIT",
   "private": true,
   "debug": {
@@ -20,7 +20,14 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "electron-updater": "^6.3.9"
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "electron-updater": "^6.3.9",
+    "electron-window-state": "^5.0.3",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^23.10.4",
+    "puppeteer-core": "^23.10.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.2",
@@ -36,6 +43,7 @@
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.4.2",
+    "unocss": "^0.65.1",
     "vite": "^5.4.11",
     "vite-plugin-electron": "^0.29.0",
     "vite-plugin-electron-renderer": "^0.14.6",

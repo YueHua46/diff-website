@@ -1,3 +1,5 @@
+// electron/preload/index.ts
+
 import { ipcRenderer, contextBridge } from 'electron'
 
 // --------- Expose some API to the Renderer process ---------
@@ -22,6 +24,20 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+
+// 通过 contextBridge 安全地暴露 IPC 方法给渲染进程
+contextBridge.exposeInMainWorld('electronAPI', {
+  addURL: (url: string) => ipcRenderer.send('add-url', url),
+  getURLs: () => ipcRenderer.invoke('get-urls'),
+  getResults: () => ipcRenderer.invoke('get-results'),
+  compareURLs: (urls: string[]) => ipcRenderer.invoke('compare-urls', urls),
+  onCompareResult: (callback: (event: any, data: any) => void) => ipcRenderer.on('compare-result', callback),
+  openSnapshotDir: () => ipcRenderer.invoke('open-snapshot-dir'), // 打开快照目录
+  openWebsiteSnapShotDir: (url: string) => ipcRenderer.invoke('open-website-snapshot-dir', url), // 打开指定网站的快照目录
+  deleteWebsite: (url: string) => ipcRenderer.invoke('delete-website', url) // 删除网站
+})
+
+console.log('electronAPI exposed')
 
 // --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
@@ -116,3 +132,4 @@ window.onmessage = (ev) => {
 }
 
 setTimeout(removeLoading, 4999)
+
