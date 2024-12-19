@@ -57,8 +57,6 @@ async function createWindow() {
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
       preload,
-      // contextIsolation: true, // 启用上下文隔离
-      // nodeIntegration: false, // 禁用 Node.js 集成
     },
   })
 

@@ -9,8 +9,10 @@ export interface CompareResult {
     url: string
     status: 'success' | 'error'
     diffPixels?: number
+    diffPercentage?: number
     message?: string
     timestamp?: string
+    diffImagePath?: string
 }
 
 // 获取存储文件的路径
@@ -40,7 +42,7 @@ export function saveURLList(urlList: string[]): void {
 }
 
 // 读取比对结果
-export function loadComparisonResults(): Record<string, { timestamp: string, diffPixels: number }> {
+export function loadComparisonResults(): Record<string, { timestamp: string, diffPixels: number, diffPercentage: number, diffImagePath?: string }> {
     try {
         if (fs.existsSync(resultsPath)) {
             const data = fs.readFileSync(resultsPath, 'utf-8')
@@ -53,7 +55,7 @@ export function loadComparisonResults(): Record<string, { timestamp: string, dif
 }
 
 // 保存比对结果
-export function saveComparisonResults(comparisonResults: Record<string, { timestamp: string, diffPixels: number }>): void {
+export function saveComparisonResults(comparisonResults: Record<string, { timestamp: string, diffPixels: number, diffPercentage: number, diffImagePath?: string }>): void {
     try {
         fs.writeFileSync(resultsPath, JSON.stringify(comparisonResults, null, 2))
     } catch (error) {

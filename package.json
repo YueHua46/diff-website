@@ -20,10 +20,13 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@types/lodash": "^4.17.13",
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
     "electron-updater": "^6.3.9",
     "electron-window-state": "^5.0.3",
+    "framer-motion": "^11.15.0",
+    "lodash": "^4.17.21",
     "pixelmatch": "^6.0.0",
     "pngjs": "^7.0.0",
     "puppeteer": "^23.10.4",

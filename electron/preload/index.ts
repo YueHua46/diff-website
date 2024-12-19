@@ -27,15 +27,22 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
 // 通过 contextBridge 安全地暴露 IPC 方法给渲染进程
 contextBridge.exposeInMainWorld('electronAPI', {
+  // 现有的 API 方法
+  onErrorOccurred: (cb: (event: any, data: { from: string, body: any }) => void) => ipcRenderer.on('error-occurred', cb),
+  offErrorOccurred: (cb: any) => ipcRenderer.off('error-occurred', cb),
   addURL: (url: string) => ipcRenderer.send('add-url', url),
   getURLs: () => ipcRenderer.invoke('get-urls'),
   getResults: () => ipcRenderer.invoke('get-results'),
   compareURLs: (urls: string[]) => ipcRenderer.invoke('compare-urls', urls),
-  onCompareResult: (callback: (event: any, data: any) => void) => ipcRenderer.on('compare-result', callback),
-  openSnapshotDir: () => ipcRenderer.invoke('open-snapshot-dir'), // 打开快照目录
-  openWebsiteSnapShotDir: (url: string) => ipcRenderer.invoke('open-website-snapshot-dir', url), // 打开指定网站的快照目录
-  deleteWebsite: (url: string) => ipcRenderer.invoke('delete-website', url) // 删除网站
+  onCompareResult: (callback: (event: any, data: CompareResult[]) => void) => ipcRenderer.on('compare-result', callback),
+  openSnapshotDir: () => ipcRenderer.invoke('open-snapshot-dir'),
+  openWebsiteSnapShotDir: (url: string) => ipcRenderer.invoke('open-website-snapshot-dir', url),
+  deleteWebsite: (url: string) => ipcRenderer.invoke('delete-website', url),
+
+  // 新增的方法，用于获取图片数据
+  getImageData: (filePath: string) => ipcRenderer.invoke('get-image-data', filePath)
 })
+
 
 console.log('electronAPI exposed')
 
@@ -132,4 +139,3 @@ window.onmessage = (ev) => {
 }
 
 setTimeout(removeLoading, 4999)
-
