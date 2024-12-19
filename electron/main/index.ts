@@ -53,6 +53,7 @@ async function createWindow() {
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
+    titleBarStyle: "hidden",
     title: '网址快照比对',
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {

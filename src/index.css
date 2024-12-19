@@ -16,6 +16,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  /* 适用于Firefox */
+  scrollbar-width: none;
+  /* 适用于IE、Edge和旧版浏览器 */
+  -ms-overflow-style: none;
 }
 
 a {
@@ -121,6 +125,10 @@ code {
 
 .animate-fade-out {
   animation: fadeOut 0.3s ease-out forwards;
+}
+
+.drag {
+  -webkit-app-region: drag;
 }
 
 /* 自定义动画 */
