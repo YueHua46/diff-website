@@ -29,7 +29,7 @@
     "lodash": "^4.17.21",
     "pixelmatch": "^6.0.0",
     "pngjs": "^7.0.0",
-    "puppeteer": "^23.10.4",
+    "puppeteer": "^24.1.1",
     "puppeteer-core": "^23.10.4"
   },
   "devDependencies": {
